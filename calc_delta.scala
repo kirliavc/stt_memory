@@ -8,7 +8,7 @@ import math.round
 import scala.collection.mutable.ArrayBuffer
 object add_reuse {
   def apply(vec: DenseVector[Double], group: ArrayBuffer[DenseVector[Double]]) = {
-    println("in add_reuse")
+    //println("in add_reuse")
     if(group.size==0){
       group += vec
     }
@@ -43,7 +43,7 @@ object add_reuse {
       if(same_line)
         group+=vec
     }
-    println("reuse group:",group)
+    //println("reuse group:",group)
   }
 }
 object CalcDelta {
@@ -58,7 +58,7 @@ object CalcDelta {
       else
         gen(n + 1, x :+ 0.0) ++ gen(n + 1, x :+ 1.0) ++ gen(n + 1, x :+ -1.0)
     }
-    println(matB)
+    //println(matB)
     
     val testers = gen(0, Array.empty[Double])
     
@@ -70,7 +70,7 @@ object CalcDelta {
         val ny = norm(y)
         val nv = norm(v)
         if (ny < 1e-5 && nv > 1e-5){
-          println(y, v)
+          //println(y, v)
           d += v
         }
           
@@ -88,13 +88,13 @@ object CalcDelta {
         if(x(i)!=0)
           df_reuse = false
       }
-      println(x, df_reuse)
+      //println(x, df_reuse)
       if(df_reuse){
         add_reuse(x, df_v)
       }
     }
     //if (matT.rows - rank(matB) != d.length)
     //  throw new Exception("Can not extract valid dataflows")
-    d
+    (time_v, df_v)
   }
 }
